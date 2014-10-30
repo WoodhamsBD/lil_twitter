@@ -1,0 +1,14 @@
+<h3><u> Here is <%= @user.handle %>'s Tweet History</u></h3>
+<a href = '/list_users'>See all users</a>
+
+<% @user.tweets.each do |tweet| %>
+	<p><%= tweet.content %></p>
+	<h6><%= tweet.created_at %></h6>
+<% end %>
+
+<a href='/account'>Your Account</a>
+
+
+
+
+
