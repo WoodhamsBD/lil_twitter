@@ -7,3 +7,10 @@
 th {
   text-align: left;
 }
+
+.tweet_input{
+	height: 100px;
+	width: 200px;
+	border-radius: 8px;
+	margin-left:10px;
+}

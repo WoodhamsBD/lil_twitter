@@ -1,0 +1,13 @@
+<p>Hey <%= current_user.name %></p>
+<h3><u> <%= current_user.handle %></u></h3>
+
+
+<form action='/create_tweet' method='POST'>
+	<input class="tweet_input" type="text" placeholder = 'New Tweet!' name="content" /><br>
+	<input type="submit" value="Submit!" />
+</form>
+
+<% current_user.tweets.each do |tweet| %>
+	<p><%= tweet.content %></p>
+	<h6><%= tweet.created_at %></h6>
+<% end %>
