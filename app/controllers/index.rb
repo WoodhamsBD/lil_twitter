@@ -12,3 +12,9 @@ post '/create_tweet' do
 	current_user.tweets << Tweet.new(:content => params[:content])
 	redirect '/account'
 end
+
+
+get '/search' do
+  @users = User.where("#{:handle} LIKE (?)", "%#{params[:handle]}%")
+  erb :list_users
+end

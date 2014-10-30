@@ -1,5 +1,6 @@
 <p>Hey <%= current_user.name %></p>
 <h3><u> <%= current_user.handle %></u></h3>
+<a href = '/list_users'>See all users</a>
 
 
 <form action='/create_tweet' method='POST'>
@@ -11,3 +12,12 @@
 	<p><%= tweet.content %></p>
 	<h6><%= tweet.created_at %></h6>
 <% end %>
+
+<h3>SEARCH FOR USERS</h3>
+<form action='/search' method='GET'>
+  <input type="text" name="handle" placeholder="Handle"/><br>
+  <input type="submit" value="Submit!"/>
+</form>
+
+
+

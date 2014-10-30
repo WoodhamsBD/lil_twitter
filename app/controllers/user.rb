@@ -15,3 +15,13 @@ post '/login' do
 		redirect '/'
 	end
 end
+
+get '/list_users' do
+	@users = User.all
+	erb :list_users
+end
+
+get '/view/:handle' do
+	@user = User.find_by(handle: params[:handle])
+	erb :single_account_view
+end
