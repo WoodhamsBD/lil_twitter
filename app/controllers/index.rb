@@ -20,10 +20,22 @@ get '/search' do
 end
 
 get '/follow/:handle' do
-  p User.first.handle
   @user = User.find_by(handle: params[:handle])
-  p @user
-  p params[:handle]
   current_user.follow(@user)
   redirect '/account'
+end
+
+get '/followers' do
+  @follows = Relationship.where(:followed_id => current_user.id)
+  p "FOOOOOOKJSUG#{@follows.inspect}"
+  @fdusers = find_followed(@follows)
+  @fdusers.flatten!
+  erb :followers
+end
+
+get '/following' do
+  @follows = Relationship.where(:follower_id => current_user.id)
+  @fusers = find_followers(@follows)
+  @fusers.flatten!
+  erb :following
 end
