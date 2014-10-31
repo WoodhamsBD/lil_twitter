@@ -3,11 +3,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 
-<form action='/create_tweet' method='POST'>
-	<textarea class="tweet_input" type="text" maxlength="140" placeholder = 'New Tweet!' name="content"></textarea><br>
-	<input type="submit" value="Submit!" />
-</form>
-
 <header>
 	<img id="logo" src="images/comment9.png">
 	<span id='tagline'>Flutter</span>
@@ -39,7 +34,9 @@
 
 <section>
 <article id='own_tweets'>
-	<p>Your own tweets!</p>
+  <% if current_user.tweets.count != 0 %>
+    <p>Your own tweets!</p>
+  <% end %>
 <% current_user.tweets.each do |tweet| %>
 	<div class='tweet'>
 	<p class='tweet_content'><%= tweet.content %></p>

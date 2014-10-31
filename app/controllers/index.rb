@@ -27,7 +27,8 @@ end
 
 get '/followers' do
   @follows = Relationship.where(:followed_id => current_user.id)
-  @fdusers = find_followers(@follows)
+  p "FOOOOOOKJSUG#{@follows.inspect}"
+  @fdusers = find_followed(@follows)
   @fdusers.flatten!
   erb :followers
 end

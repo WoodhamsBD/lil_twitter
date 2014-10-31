@@ -24,4 +24,12 @@ helpers do
 		end
 		followers_array
 	end
+
+	def find_followed(follows)
+		followed_array = []
+		follows.each do |find|
+			followed_array << User.where(:id => find.follower_id)
+		end
+		followed_array
+	end
 end
