@@ -1,6 +1,8 @@
 <h3>Select from the following handles to view their page.</h3>
-<% @users.each do |user| %>
-	<a href ='/view/<%= user.handle %>'><%=user.handle%></a>
-<% end %>
-
-<a href='/account'>Your Account</a>
+<form>
+    <% @users.each do |user| %>
+  	<a href ='/view/<%= user.handle %>'><%= user.handle %></a>
+    <input type='submit' value='Follow This User' formaction="/follow/<%= user.id %>" method="POST">
+  <% end %>
+  <a href='/account'>Your Account</a>
+</form

@@ -8,7 +8,7 @@ get '/account' do
 	erb :account
 end
 
-post '/create_tweet' do 
+post '/create_tweet' do
 	current_user.tweets << Tweet.new(:content => params[:content])
 	redirect '/account'
 end
@@ -17,4 +17,10 @@ end
 get '/search' do
   @users = User.where("#{:handle} LIKE (?)", "%#{params[:handle]}%")
   erb :list_users
+end
+
+get '/follow/:id' do
+  @user = User.find(params[:id])
+  current_user.follow(@user)
+  redirect '/account'
 end
