@@ -31,4 +31,3 @@ get '/view/:handle' do
 	@user = User.find_by(handle: params[:handle])
 	erb :single_account_view
 end
-
