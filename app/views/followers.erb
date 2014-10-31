@@ -1,0 +1,5 @@
+<h3>Your followers</h3>
+
+<% @fdusers.each do |user| %>
+  <a href ='/view/<%= user.handle %>'><%= user.handle %><br></a>
+<% end %>

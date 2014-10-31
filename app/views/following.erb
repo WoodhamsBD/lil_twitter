@@ -1,0 +1,5 @@
+<h3>You are Following</h3>
+
+<% @fusers.each do |user| %>
+  <a href ='/view/<%= user.handle %>'><%= user.handle %><br></a>
+<% end %>

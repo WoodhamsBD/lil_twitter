@@ -24,3 +24,17 @@ get '/follow/:handle' do
   current_user.follow(@user)
   redirect '/account'
 end
+
+get '/followers' do
+  @follows = Relationship.where(:followed_id => current_user.id)
+  @fdusers = find_followers(@follows)
+  @fdusers.flatten!
+  erb :followers
+end
+
+get '/following' do
+  @follows = Relationship.where(:follower_id => current_user.id)
+  @fusers = find_followers(@follows)
+  @fusers.flatten!
+  erb :following
+end

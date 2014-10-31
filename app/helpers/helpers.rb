@@ -4,7 +4,7 @@ helpers do
 		return nil if !session[:user_id]
 		@current_user ||=  User.find(session[:user_id])
 	end
-	
+
 	def followed_tweets
 		follow_array=[]
 		current_user.followeds.each do |person_you_follow|
@@ -15,5 +15,13 @@ helpers do
 
 	def handle_from_tweet(tweet)
 		User.find(tweet.user_id).handle
+	end
+
+	def find_followers(follows)
+		followers_array = []
+		follows.each do |find|
+			followers_array << User.where(:id => find.id)
+		end
+		followers_array
 	end
 end
