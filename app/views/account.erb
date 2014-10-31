@@ -1,8 +1,12 @@
-
 <head>
 	<link rel='stylesheet' href ='/css/account.css' type='text/css'/>
 	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
+
+<form action='/create_tweet' method='POST'>
+	<textarea class="tweet_input" type="text" maxlength="140" placeholder = 'New Tweet!' name="content"></textarea><br>
+	<input type="submit" value="Submit!" />
+</form>
 
 <header>
 	<img id="logo" src="images/comment9.png">
@@ -18,23 +22,20 @@
 	<header>Hey <%= current_user.name %></header>
 	<span id = 'stats'><i> @<%= current_user.handle %></i>
 	<table>
-		<tr><td>Following: <%=current_user.followeds.count %> users.<td></tr>
-		<tr><td>Followed by: <%=current_user.followers.count %></td></tr>
+		<tr><td>Following: <a href="/following"><%=current_user.followeds.count %></a> users.<td></tr>
+		<tr><td>Followed by: <a href="/followers"><%=current_user.followers.count %></a></td></tr>
 		<tr><td>Tweets: <%= current_user.tweets.count %></td></tr>
 	</table></span>
 	<a href = '/list_users'>See all users</a>
 
-
-
 	<form action='/create_tweet' method='POST'>
-		<input class="tweet_input" type="text" maxlength="140" placeholder = 'New Tweet!' name="content" /><br>
+		<textarea class="tweet_input" type="text" maxlength="140" placeholder = 'New Tweet!' name="content" ></textarea><br>
 		<input type="submit" value="Submit!" />
 	</form>
 	<form id ='logout'action='/log_out' method='GET'>
   	<input type="submit" value="Logout"/>
 	</form>
 	</div>
-
 
 <section>
 <article id='own_tweets'>
