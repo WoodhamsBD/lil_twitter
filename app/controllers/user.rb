@@ -23,7 +23,7 @@ get '/log_out' do
 end
 
 get '/list_users' do
-	@users = User.all
+	@users = User.where.not(id: current_user)
 	erb :list_users
 end
 

@@ -18,12 +18,13 @@
 	<h6><%= tweet.created_at %></h6>
 <% end %>
 
-<p>Here are tweets from those you are following</p>
-
-<% followed_tweets.each do |tweet| %>
-	<p><%= tweet.content %></p>
-	<p>Tweeted by: <a href ='/view/<%=handle_from_tweet(tweet) %>'><%=handle_from_tweet(tweet) %></a> </p>
-	<h6><%= tweet.created_at %></h6>
+<% if current_user.followeds.count != 0 %>
+	<p>Here are tweets from those you are following</p>
+	<% followed_tweets.each do |tweet| %>
+		<p><%= tweet.content %></p>
+		<p>Tweeted by: <a href ='/view/<%=handle_from_tweet(tweet) %>'><%=handle_from_tweet(tweet) %></a> </p>
+		<h6><%= tweet.created_at %></h6>
+	<% end %>
 <% end %>
 
 <h3>SEARCH FOR USERS</h3>
