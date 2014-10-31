@@ -1,10 +1,26 @@
+<head>
+	<link rel='stylesheet' href ='/css/account.css' type='text/css'/>
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
 
+<header>
+	<img id="logo" src="/images/comment9.png">
+	<span id='tagline'>Flutter</span>
+	<span id="search">Search for Users
+	<form action='/search' method='GET'>
+  	<input type="text" name="handle" placeholder="Handle"/>
+  	<input type="submit" value="Submit!"/>
+	</form></span>
+</header>
 
 <h3>Select from the following handles to view their page.</h3>
 <form>
+	<ul>
     <% @users.each do |user| %>
-  	<a href ='/view/<%= user.handle %>'><%= user.handle %></a>
-      <input type='submit' value='Follow This User' formaction="/follow/<%= user.handle %>" method="POST">
+  	<li><div id='list'><a href ='/view/<%= user.handle %>'><%= user.handle %></a>
+      <br/>
+      <input type='submit' value='Follow This User' formaction="/follow/<%= user.handle %>" method="POST"></div></li>
   <% end %>
+</ul>
   <a href='/account'>Your Account</a>
 </form
