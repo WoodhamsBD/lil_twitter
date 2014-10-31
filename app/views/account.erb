@@ -12,8 +12,17 @@
   <input type="submit" value="Logout"/><br>
 </form>
 
+
 <% current_user.tweets.each do |tweet| %>
 	<p><%= tweet.content %></p>
+	<h6><%= tweet.created_at %></h6>
+<% end %>
+
+<p>Here are tweets from those you are following</p>
+
+<% followed_tweets.each do |tweet| %>
+	<p><%= tweet.content %></p>
+	<p>Tweeted by: <a href ='/view/<%=handle_from_tweet(tweet) %>'><%=handle_from_tweet(tweet) %></a> </p>
 	<h6><%= tweet.created_at %></h6>
 <% end %>
 
