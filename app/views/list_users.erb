@@ -2,7 +2,7 @@
 <form>
     <% @users.each do |user| %>
   	<a href ='/view/<%= user.handle %>'><%= user.handle %></a>
-      <input type='submit' value='Follow This User' formaction="/follow/<%= user.id %>" method="POST">
+      <input type='submit' value='Follow This User' formaction="/follow/<%= user.handle %>" method="POST">
   <% end %>
   <a href='/account'>Your Account</a>
 </form

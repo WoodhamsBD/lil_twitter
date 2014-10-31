@@ -20,7 +20,10 @@ get '/search' do
 end
 
 get '/follow/:handle' do
+  p User.first.handle
   @user = User.find_by(handle: params[:handle])
+  p @user
+  p params[:handle]
   current_user.follow(@user)
   redirect '/account'
 end
