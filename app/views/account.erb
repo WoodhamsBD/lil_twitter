@@ -4,7 +4,7 @@
 
 
 <form action='/create_tweet' method='POST'>
-	<input class="tweet_input" type="text" placeholder = 'New Tweet!' name="content" /><br>
+	<input class="tweet_input" type="text" maxlength='140' placeholder = 'New Tweet!' name="content" /><br>
 	<input type="submit" value="Submit!" />
 </form>
 
@@ -12,8 +12,17 @@
   <input type="submit" value="Logout"/><br>
 </form>
 
+
 <% current_user.tweets.each do |tweet| %>
 	<p><%= tweet.content %></p>
+	<h6><%= tweet.created_at %></h6>
+<% end %>
+
+<p>Here are tweets from those you are following</p>
+
+<% followed_tweets.each do |tweet| %>
+	<p><%= tweet.content %></p>
+	<p>Tweeted by: <a href ='/view/<%=handle_from_tweet(tweet) %>'><%=handle_from_tweet(tweet) %></a> </p>
 	<h6><%= tweet.created_at %></h6>
 <% end %>
 
