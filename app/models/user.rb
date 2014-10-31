@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follower_relationships
   has_many :followeds, through: :followed_relationships
 
-  def following? user
-    self.followeds.include? user
-  end
-
   def follow user
     Relationship.create follower_id: self.id, followed_id: user.id
   end

@@ -19,8 +19,11 @@ get '/search' do
   erb :list_users
 end
 
-get '/follow/:id' do
-  @user = User.find(params[:id])
+get '/follow/:handle' do
+  p User.first.handle
+  @user = User.find_by(handle: params[:handle])
+  p @user
+  p params[:handle]
   current_user.follow(@user)
   redirect '/account'
 end
