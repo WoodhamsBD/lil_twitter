@@ -2,7 +2,6 @@
 <h3><u> <%= current_user.handle %></u></h3>
 <a href = '/list_users'>See all users</a>
 
-
 <form action='/create_tweet' method='POST'>
 	<input class="tweet_input" type="text" maxlength="140" placeholder = 'New Tweet!' name="content" /><br>
 	<input type="submit" value="Submit!" />
@@ -11,7 +10,6 @@
 <form action='/log_out' method='GET'>
   <input type="submit" value="Logout"/><br>
 </form>
-
 
 <% current_user.tweets.each do |tweet| %>
 	<p><%= tweet.content %></p>

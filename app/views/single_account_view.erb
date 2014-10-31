@@ -6,9 +6,8 @@
 	<h6><%= tweet.created_at %></h6>
 <% end %>
 
+<form>
+ <input type='submit' value='Follow This User' formaction="/follow/<%= params[:handle] %>" method="POST">
+ </form>
+
 <a href='/account'>Your Account</a>
-
-
-
-
-
