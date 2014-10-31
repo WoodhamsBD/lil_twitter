@@ -42,7 +42,7 @@
 <% current_user.tweets.each do |tweet| %>
 	<div class='tweet'>
 	<p class='tweet_content'><%= tweet.content %></p>
-	<h6 class = 'date'><%=tweet.created_at%></h6>
+	<h6 class = 'date'><%=tweet.time_difference%></h6>
 	</div>
 <% end %>
 </article>
@@ -54,7 +54,7 @@
 		<div class='tweet'>
 		<p class = 'tweet_content'><%= tweet.content %></p>
 		<p class = 'followed_tweet_author'>Tweeted by: <a href ='/view/<%=handle_from_tweet(tweet) %>'><%=handle_from_tweet(tweet) %></a> </p>
-		<h6 class= 'date'><%= tweet.created_at %></h6>
+		<h6 class= 'date'><%= tweet.time_difference %></h6>
 	</div>
 	<% end %>
 <% end %>
