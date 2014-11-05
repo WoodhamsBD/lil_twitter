@@ -1,41 +1,63 @@
 get '/' do
   # Look in app/views/index.erb
+  @articles = Article.all
   erb :index
 end
 
 get '/account' do
-	redirect '/' if !current_user
-	erb :account
+ @user_articles = Article.where(user_id: session[:id])
+ erb :account
 end
 
-post '/create_tweet' do
-	current_user.tweets << Tweet.new(:content => params[:content])
-	redirect '/account'
+post '/posts/new' do
+  Article.create(user_id: session[:id], content: params[:content], votes: 0)
+  redirect '/'
 end
 
 
-get '/search' do
-  @users = User.where("#{:handle} LIKE (?)", "%#{params[:handle]}%")
-  erb :list_users
+get '/posts/:id' do
+  @article = Article.find(params[:id])
+  erb :article
 end
 
-get '/follow/:handle' do
-  @user = User.find_by(handle: params[:handle])
-  current_user.follow(@user)
-  redirect '/account'
+post '/users/new' do
+  User.create(name: params[:name])
+  session[:id] = User.last.id
+  redirect '/'
 end
 
-get '/followers' do
-  @follows = Relationship.where(:followed_id => current_user.id)
-  p "FOOOOOOKJSUG#{@follows.inspect}"
-  @fdusers = find_followed(@follows)
-  @fdusers.flatten!
-  erb :followers
+post '/users/sign_in' do
+  @user = User.find_by(name: params[:name])
+  session[:id] = @user.id
+  redirect '/'
 end
 
-get '/following' do
-  @follows = Relationship.where(:follower_id => current_user.id)
-  @fusers = find_followers(@follows)
-  @fusers.flatten!
-  erb :following
+get '/user/sign_out' do
+  session[:id] = nil
+  redirect '/'
+end
+
+post '/posts/:id/vote/up' do
+  @article_vote = Article.find(params[:id])
+  new_vote = (@article_vote.votes += 1)
+  @article_vote.update_attributes(:votes => new_vote)
+  redirect '/'
+end
+
+post '/posts/:id/vote/down' do
+  @article_vote = Article.find(params[:id])
+  new_vote = (@article_vote.votes -= 1)
+  @article_vote.update_attributes(:votes => new_vote)
+  redirect '/'
+end
+
+post '/posts/:id/edit' do
+  @article_edit = Article.find(params[:id])
+  @article_edit.update_attributes(:content => params[:content])
+  redirect '/'
+end
+
+delete '/posts/:id/delete' do
+  Article.delete(params[:id])
+  redirect '/'
 end
